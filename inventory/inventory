@@ -2,5 +2,7 @@
 windows_machine ansible_host= 10.1.1.2
 ansible_user=Alberto
 ansible_password=Alvis1595#
-ansible_connection=winrm 
+ansible_port=5985
+ansible_connection=winrm
+ansible_winrm_transport=basic
 ansible_winrm_server_cert_validation=ignore
