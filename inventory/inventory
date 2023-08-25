@@ -1,1 +1,6 @@
-ds
+[windows_hosts]
+windows_machine ansible_host=IP_DEL_HOST 
+ansible_user=USUARIO 
+ansible_password=CONTRASEÑA 
+ansible_connection=winrm 
+ansible_winrm_server_cert_validation=ignore
