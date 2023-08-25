@@ -1,6 +1,8 @@
 ---
 - name: Ping a host Windows
   hosts: all
+  become: flase
+  gather_facts: false
   tasks:
     - name: pingtest
       win_ping:
