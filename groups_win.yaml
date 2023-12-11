@@ -1,0 +1,12 @@
+---
+- name: Listar grupos en Windows Server
+  hosts: nombre_del_servidor
+  tasks:
+    - name: Obtener información de grupos
+      win_group_info:
+        name: '*'
+      register: group_info
+
+    - name: Mostrar grupos
+      debug:
+        var: group_info
