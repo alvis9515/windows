@@ -1,0 +1,14 @@
+---
+- name: Comprobar y reiniciar el servicio wuauserv
+  hosts: all
+  tasks:
+    - name: Obtener el estado actual del servicio wuauserv
+      win_service_info:
+        name: wuauserv
+      register: service_info
+
+    - name: Reiniciar el servicio si está detenido
+      win_service:
+        name: wuauserv
+        state: started
+      when: service_info.state == 'stopped'
