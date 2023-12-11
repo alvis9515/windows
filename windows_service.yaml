@@ -3,12 +3,12 @@
   hosts: all
   tasks:
     - name: Obtener el estado actual del servicio wuauserv
-      win_service_info:
+      ansible.windows.win_service::
         name: wuauserv
       register: service_info
 
     - name: Reiniciar el servicio si está detenido
-      win_service:
+      ansible.windows.win_service:
         name: wuauserv
         state: started
       when: service_info.state == 'stopped'
