@@ -3,12 +3,9 @@
   hosts: all
   tasks:
     - name: Obtener el estado actual del servicio wuauserv
-      win_service::
-        name: wuauserv
-      register: service_info
+      win_shell: Get-Service -Name wuauserv | Select-Object Status
+      register: service_status
 
     - name: Reiniciar el servicio si está detenido
-      win_service:
-        name: wuauserv
-        state: started
-      when: service_info.state == 'stopped'
+      win_shell: Restart-Service -Name wuauserv
+      when: "service_status.stdout -eq 'Stopped'"
