@@ -1,6 +1,6 @@
 ---
 - name: Listar grupos en Windows Server
-  hosts: nombre_del_servidor
+  hosts: all
   tasks:
     - name: Obtener información de grupos
       win_group_info:
