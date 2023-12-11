@@ -5,7 +5,7 @@
     - name: Crear usuario
       win_user:
         name: monica
-        password: contraseña
+        password: OracleRedsoft2022#
         state: present
         groups: Administrators  # Opcional: Agregar al grupo Administradores u otro grupo necesario
       become: yes
