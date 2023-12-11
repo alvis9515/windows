@@ -3,10 +3,9 @@
   hosts: all
   tasks:
     - name: Obtener información de grupos
-      win_group_info:
-        name: '*'
+      win_shell: Get-LocalGroup
       register: group_info
 
     - name: Mostrar grupos
       debug:
-        var: group_info
+        var: group_info.stdout_lines
