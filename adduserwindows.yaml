@@ -1,0 +1,11 @@
+---
+- name: Crear usuario en Windows Server 2016
+  hosts: nombre_del_servidor
+  tasks:
+    - name: Crear usuario
+      win_user:
+        name: monica
+        password: contraseña
+        state: present
+        groups: Administrators  # Opcional: Agregar al grupo Administradores u otro grupo necesario
+      become: yes
