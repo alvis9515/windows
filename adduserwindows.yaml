@@ -1,6 +1,6 @@
 ---
 - name: Crear usuario en Windows Server 2016
-  hosts: nombre_del_servidor
+  hosts: all
   tasks:
     - name: Crear usuario
       win_user:
