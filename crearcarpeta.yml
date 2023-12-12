@@ -1,0 +1,10 @@
+---
+- name: Crear carpeta en Windows Server
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    - name: Crear carpeta en el escritorio
+      win_file:
+        path: "C:\\Users\\Administrator\\Desktop\\NuevaCarpeta"  # Ruta de la nueva carpeta
+        state: directory
