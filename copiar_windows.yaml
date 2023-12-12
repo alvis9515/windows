@@ -1,10 +1,10 @@
 ---
-- name: Mover archivo a Windows Server
-  hosts: all   # Cambia esto al grupo o nombre de host de tu servidor Windows
+- name: Copiar archivo desde Linux a Windows
+  hosts: all
   gather_facts: no
 
   tasks:
-    - name: Copiar archivo desde AWX a Windows Server
+    - name: Copiar archivo desde Linux a Windows
       win_copy:
-        src: /home/Administrator/pruebas.json  # Ruta completa del archivo en el servidor AWX
-        dest: C:\Users\Administrator\Desktop\     
+        src: "scp://usuario_linux@192.168.72.50:/home/administrator/hol.json"  # Ruta completa del archivo en el servidor Linux
+        dest: "C:\\Users\\Administrator\\Desktop\\"
