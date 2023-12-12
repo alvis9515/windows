@@ -1,6 +1,6 @@
 ---
 - name: Mover archivo a Windows Server
-  hosts: windows_server   # Cambia esto al grupo o nombre de host de tu servidor Windows
+  hosts: all   # Cambia esto al grupo o nombre de host de tu servidor Windows
   gather_facts: no
 
   tasks:
