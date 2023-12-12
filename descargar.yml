@@ -6,5 +6,5 @@
   tasks:
     - name: Descargar archivo desde servidor Ubuntu
       fetch:
-        src: "/home/Administrator/archivo.txt"  # Ruta completa del archivo en el servidor Ubuntu
+        src: "/home/Administrator/pruebas.json"  # Ruta completa del archivo en el servidor Ubuntu
         dest: "/tmp/" 
