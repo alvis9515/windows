@@ -10,7 +10,12 @@
         state: directory
   tasks:
     - name: Obtener información de espacio disponible en discos
-      win_shell: Get-PSDrive -PSProvider FileSystem | Select-Object Name, Used, Free, Size
+      win_shell: |
+        $diskInfo = Get-PSDrive -PSProvider FileSystem | Select-Object Name, Used, Free, Size
+        $formattedInfo = $diskInfo | ForEach-Object {
+            $_.Name + " " + "{0:N2}" -f ($_.Used / 1GB) + " GB Used, " + "{0:N2}" -f ($_.Free / 1GB) + " GB Free, " + "{0:N2}" -f ($_.Size / 1GB) + " GB Total"
+        }
+        $formattedInfo
       register: disk_space_info
 
     - name: Mostrar información de espacio disponible en discos
