@@ -6,5 +6,5 @@
   tasks:
     - name: Copiar archivo desde AWX a Windows Server
       win_copy:
-        src: /home/awx/casa.json  # Ruta completa del archivo en el servidor AWX
+        src: /home/Administrator/pruebas.json  # Ruta completa del archivo en el servidor AWX
         dest: C:\Users\Administrator\Desktop\     
