@@ -2,6 +2,7 @@
 - name: Descargar archivo desde servidor Ubuntu a Ansible Controller
   hosts: all  # Cambia esto al grupo o dirección IP de tu servidor Ubuntu
   gather_facts: no
+  become: true
 
   tasks:
     - name: Descargar archivo desde servidor Ubuntu
