@@ -9,9 +9,10 @@
         path: "C:\\Users\\Administrator\\Desktop\\NuevaCarpeta"  # Ruta de la nueva carpeta
         state: directory
   tasks:
-    - name: Obtener información de discos
-      win_disk_facts:
+    - name: Obtener información de espacio disponible en discos
+      win_shell: Get-PSDrive -PSProvider FileSystem | Select-Object Name, Used, Free, Size
+      register: disk_space_info
 
-    - name: Mostrar información de discos
+    - name: Mostrar información de espacio disponible en discos
       debug:
-        var: ansible_facts.disk
+        var: disk_space_info.stdout_lines
