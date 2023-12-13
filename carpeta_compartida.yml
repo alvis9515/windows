@@ -15,4 +15,4 @@
         description: top secret share
         path: C:\holamundo
         list: false
-        full: Administrators,CEO
+        full: Administrators
