@@ -11,10 +11,11 @@
 
     - name: Verificar si la carpeta se creó con éxito
       assert:
-        that: "'The item' in carpeta_creada.stdout"
+        that: 
+          - "'The item' in carpeta_creada.stdout"
+          - "carpeta_creada.rc == 0"
         fail_msg: "Error al crear la carpeta compartida"
-      when: carpeta_creada|default({}).rc == 0
-
+        
     - name: Compartir carpeta
       win_share:
         name: "Carpetascompart"
