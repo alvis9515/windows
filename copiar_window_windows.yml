@@ -10,5 +10,4 @@
         dest: C:\Users\Administrator\Desktop\consultas\
       delegate_to: "{{ item }}"
       with_items: "{{ groups['Destino']}}"
-      loop_control:
-        loop_var: item_destino
+
