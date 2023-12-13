@@ -5,14 +5,14 @@
   tasks:
     - name: Crear carpeta en el escritorio
       win_file:
-        path: "C:\\Users\\Administrator\\Desktop\\NuevaCarpeta2"  # Ruta de la nueva carpeta
+        path: "C:\\Users\\Administrator\\Desktop\\NuevaCarpeta3"  # Ruta de la nueva carpeta
         register: carpeta_creada
         state: directory
         
     - name: Compartir carpeta
       win_share:
-        name: "Carpetascompart"
-        path: "C:\\Users\\Administrator\\Desktop\\NuevaCarpeta2"
+        name: "Carpetascompart2"
+        path: "C:\Users\Administrator\Desktop\NuevaCarpeta3"
         description: "Descripción de la carpeta compartida"
         permissions:
           - name: "Administrators"
