@@ -1,0 +1,34 @@
+---
+- name: Crear carpeta compartida en Windows
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Crear carpeta en el escritorio
+      win_file:
+        path: "C:\\Users\\Administrator\\Desktop\\NuevaCarpeta2"  # Ruta de la nueva carpeta
+        state: directory
+        register: carpeta_creada
+
+    - name: Verificar si la carpeta se creó con éxito
+      assert:
+        that: "'The item' in carpeta_creada.stdout"
+        fail_msg: "Error al crear la carpeta compartida"
+      when: carpeta_creada.rc == 0
+
+    - name: Compartir carpeta
+      win_share:
+        name: "Carpetascompart"
+        path: "C:\\Users\\Administrator\\Desktop\\NuevaCarpeta2"
+        description: "Descripción de la carpeta compartida"
+        permissions:
+          - name: "Administrators"
+            read: yes
+            change: yes
+        state: present
+      register: carpeta_compartida
+
+    - name: Verificar si la carpeta se compartió con éxito
+      assert:
+        that: "'successfully shared' in carpeta_compartida.stdout"
+        fail_msg: "Error al compartir la carpeta"
+      when: carpeta_compartida.rc == 0
