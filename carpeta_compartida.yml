@@ -13,6 +13,6 @@
       ansible.windows.win_share:
         name: internal
         description: top secret share
-        path: C:\holamundo
+        path: C:\Users\Administrator\Desktop\NuevaCarpeta6
         list: false
         full: Administrators
