@@ -13,7 +13,7 @@
       assert:
         that: "'The item' in carpeta_creada.stdout"
         fail_msg: "Error al crear la carpeta compartida"
-      when: carpeta_creada.rc == 0
+      when: carpeta_creada|default({}).rc == 0
 
     - name: Compartir carpeta
       win_share:
