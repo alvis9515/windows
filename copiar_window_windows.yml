@@ -9,3 +9,4 @@
       src: C:\Users\Administrator\Desktop\pruebas\pruebas.txt
       dest: C:\Users\Administrator\Desktop\consultas\
     delegate_to: Origen
+    remote_src: true
