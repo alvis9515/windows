@@ -13,7 +13,7 @@
       ansible.windows.win_share:
         name: internal
         description: top secret share
-        path: C:\shares\internal
+        path: C:\holamundo
         list: false
         full: Administrators,CEO
         read: HR-Global
