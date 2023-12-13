@@ -6,5 +6,5 @@
   tasks:
     - name: Copy a single file
       win_copy:
-      src: /home/awx/pruebas.json
-      dest: C:\pruebas\
+        src: /home/awx/pruebas.json
+        dest: C:\pruebas\
