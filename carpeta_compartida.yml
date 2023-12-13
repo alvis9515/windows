@@ -11,7 +11,7 @@
         
     - name: Add secret share
       ansible.windows.win_share:
-        name: internal
+        name: internal2
         description: top secret share
         path: C:\Users\Administrator\Desktop\NuevaCarpeta6
         list: false
