@@ -9,20 +9,11 @@
         register: carpeta_creada
         state: directory
         
-    - name: Compartir carpeta
-      win_share:
-        name: Carpetascompart5
-        path: C:\Users\Administrator\Desktop\NuevaCarpeta5
-        description: "Descripción de la carpeta compartida"
-        permissions:
-          - name: "Administrators"
-            read: yes
-            change: yes
-        state: present
-      register: carpeta_compartida
-
-    - name: Verificar si la carpeta se compartió con éxito
-      assert:
-        that: "'successfully shared' in carpeta_compartida.stdout"
-        fail_msg: "Error al compartir la carpeta"
-      when: carpeta_compartida.rc == 0
+    - name: Add secret share
+      ansible.windows.win_share:
+        name: internal
+        description: top secret share
+        path: C:\shares\internal
+        list: false
+        full: Administrators,CEO
+        read: HR-Global
