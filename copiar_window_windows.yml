@@ -1,4 +1,9 @@
-tasks:
+---
+- name: Crear carpeta compartida en Windows
+  hosts: all
+  gather_facts: false
+  
+  tasks:
   - name: Copiar archivos desde el servidor origen al servidor destino
     win_copy:
       src: C:\Users\Administrator\Desktop\pruebas\pruebas.txt
