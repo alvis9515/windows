@@ -12,7 +12,7 @@
     - name: Compartir carpeta
       win_share:
         name: "Carpetascompart2"
-        path: "C:\Users\Administrator\Desktop\NuevaCarpeta3"
+        path: "C:\\Users\\Administrator\\Desktop\\NuevaCarpeta3"
         description: "Descripción de la carpeta compartida"
         permissions:
           - name: "Administrators"
