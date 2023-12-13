@@ -8,6 +8,7 @@
       win_copy:
         src: C:\Users\Administrator\Desktop\pruebas\pruebas.txt
         dest: C:\Users\Administrator\Desktop\consultas\
+        remote_src: yes
       delegate_to: Destino
       
 
