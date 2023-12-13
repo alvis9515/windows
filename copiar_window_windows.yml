@@ -1,6 +1,6 @@
 ---
 - name: Crear carpeta compartida en Windows
-  hosts: all
+  hosts: "{{ groups['Origen']}}"
   gather_facts: false
   
   tasks:
@@ -8,4 +8,4 @@
       win_copy:
         src: C:\Users\Administrator\Desktop\pruebas\pruebas.txt
         dest: C:\Users\Administrator\Desktop\consultas\
-      delegate_to: "{{groups['Destino']}}"
+      delegate_to: "{{ groups['Destino']}}"
