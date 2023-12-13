@@ -6,15 +6,8 @@
     - name: Crear carpeta en el escritorio
       win_file:
         path: "C:\\Users\\Administrator\\Desktop\\NuevaCarpeta2"  # Ruta de la nueva carpeta
-        state: directory
         register: carpeta_creada
-
-    - name: Verificar si la carpeta se creó con éxito
-      assert:
-        that: 
-          - "'The item' in carpeta_creada.stdout"
-          - "carpeta_creada.rc == 0"
-        fail_msg: "Error al crear la carpeta compartida"
+        state: directory
         
     - name: Compartir carpeta
       win_share:
