@@ -6,5 +6,5 @@
   tasks:
     - name: Copy a single file
       ansible.windows.win_copy:
-      src: /srv/myfiles/foo.conf
+      src: /home/awx/pruebas.json
       dest: C:\pruebas\
