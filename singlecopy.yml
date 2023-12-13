@@ -1,0 +1,10 @@
+---
+- name: Crear carpeta compartida en Windows
+  hosts: all
+  gather_facts: false
+  
+  tasks:
+    - name: Copy a single file
+      ansible.windows.win_copy:
+      src: /srv/myfiles/foo.conf
+      dest: C:\pruebas\
