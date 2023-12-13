@@ -1,0 +1,6 @@
+tasks:
+  - name: Copiar archivos desde el servidor origen al servidor destino
+    win_copy:
+      src: C:\Users\Administrator\Desktop\pruebas\pruebas.txt
+      dest: C:\Users\Administrator\Desktop\consultas\
+    delegate_to: Origen
