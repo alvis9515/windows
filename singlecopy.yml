@@ -1,10 +1,10 @@
 ---
-- name: Crear carpeta compartida en Windows
+- name: Copiar archivo a máquina remota
   hosts: all
-  gather_facts: false
-  
+  become: true  # Si es necesario obtener privilegios de superusuario (sudo)
+
   tasks:
-    - name: Copy a single file
-      win_copy:
-        src: /home/awx/pruebas.json
-        dest: C:\pruebas\
+    - name: Copiar archivo desde el host local a la máquina remota
+      copy:
+        src: /var/lib/awx/projects/hola.txt  # Ruta del archivo en el host local
+        dest: /home/awx/Desktop/
