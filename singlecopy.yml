@@ -1,7 +1,6 @@
 ---
 - name: Copiar archivo a máquina remota
   hosts: all
-  become: true  # Si es necesario obtener privilegios de superusuario (sudo)
 
   tasks:
     - name: Copiar archivo desde el host local a la máquina remota
