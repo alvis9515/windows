@@ -6,5 +6,5 @@
   tasks:
     - name: Copiar archivo desde el host local a la máquina remota
       copy:
-        src: /hola.txt  # Ruta del archivo en el host local
+        src: /tmp/hola.txt  # Ruta del archivo en el host local
         dest: /home/awx/Desktop/
