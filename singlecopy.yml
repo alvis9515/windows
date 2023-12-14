@@ -5,5 +5,5 @@
   tasks:
     - name: Copiar archivo desde el host local a la máquina remota
       ansible.builtin.copy:
-        src: /tmp/hola.txt  # Ruta del archivo en el host local
+        src: tmp/hola.txt  # Ruta del archivo en el host local
         dest: /home/awx/Desktop/
