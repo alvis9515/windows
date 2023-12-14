@@ -9,5 +9,5 @@
         dest: /home/awx/Desktop/  # Ruta de destino en el servidor remoto
       delegate_to: 192.168.73.247  # Dirección IP del servidor remoto
       vars:
-        ansible_ssh_user: "{{ lookup('credstash', '1595/awx') }}"
-        ansible_ssh_pass: "{{ lookup('credstash', '1595/awx') }}"
+        ansible_ssh_user: "{{ awx }}"
+        ansible_ssh_pass: "{{ 1595 }}"
