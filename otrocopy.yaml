@@ -8,7 +8,7 @@
         patterns: "hola.txt"
       register: resultado_busqueda
 
-- hosts: 192.168.73.248
+- hosts: 192.168.73.247
   become: true
   tasks:
     - name: Crear la carpeta de destino si no existe
