@@ -17,6 +17,6 @@
         state: directory
 
     - name: Copiar el archivo desde 192.12.23.1 a 192.12.23.2
-      copy:
+      synchronize:
         src: "/home/awx/Desktop/hola.txt"
         dest: "/home/awx/Desktop/"
