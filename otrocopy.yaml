@@ -4,7 +4,7 @@
   tasks:
     - name: Buscar el archivo en la dirección especificada
       find:
-        paths: "/home/awx/"
+        paths: "/home/awx/Desktop"
         patterns: "hola.txt"
       register: resultado_busqueda
 
@@ -18,5 +18,5 @@
 
     - name: Copiar el archivo desde 192.12.23.1 a 192.12.23.2
       copy:
-        src: "/home/awx/hola.txt"
+        src: "/home/awx/Desktop/hola.txt"
         dest: "/home/awx/Desktop/"
