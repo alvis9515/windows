@@ -1,0 +1,13 @@
+---
+- name: Copiar archivo a máquina remota
+  hosts: localhost  # Este playbook se ejecutará en localhost
+
+  tasks:
+    - name: Copiar archivo desde localhost al servidor remoto
+      ansible.builtin.copy:
+        src: /tmp/hola.txt  # Ruta del archivo en localhost
+        dest: /home/awx/Desktop/  # Ruta de destino en el servidor remoto
+      delegate_to: 192.168.73.247  # Dirección IP del servidor remoto
+      vars:
+        ansible_ssh_user: "{{ lookup('credstash', '1595/awx') }}"
+        ansible_ssh_pass: "{{ lookup('credstash', '1595/awx') }}"
