@@ -7,7 +7,7 @@
     remote_server: "192.168.73.247"
     remote_file_path: "/tmp/texto.txt"
     remote_server_user: "awx"
-    remote_vault_password: "{{ lookup('env', 'contraseña') }}"
+    remote_vault_password: "{{ lookup('env', 'Contraseña') }}"
 
   tasks:
     - name: Crear archivo en localhost
