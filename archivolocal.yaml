@@ -1,0 +1,8 @@
+---
+- name: Crear archivo en localhost
+  hosts: all
+  tasks:
+    - name: Crear archivo
+      file:
+        path: /tmp/hola.txt
+        state: touch
