@@ -19,7 +19,7 @@
         var: local_file_path
 
     - name: Copiar archivo al otro servidor
-      ansible.builtin.copy:
+      copy:
         src: "{{ local_file_path }}"
         dest: "{{ remote_file_path }}"
       delegate_to: "{{ remote_server }}"
