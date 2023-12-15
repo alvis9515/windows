@@ -1,0 +1,27 @@
+---
+- name: Crear y copiar archivo en localhost y otro servidor
+  hosts: localhost
+  become: no
+  vars:
+    local_file_path: "/tmp/texto.txt"
+    remote_server: "192.168.73.247"
+    remote_file_path: "/tmp/texto.txt"
+    remote_server_user: "awx"
+
+  tasks:
+    - name: Crear archivo en localhost
+      file:
+        path: "{{ local_file_path }}"
+        state: touch
+
+    - name: Mostrar la ruta del archivo creado
+      debug:
+        var: local_file_path
+
+    - name: Copiar archivo al otro servidor
+      ansible.builtin.copy:
+        src: "{{ local_file_path }}"
+        dest: "{{ remote_file_path }}"
+      delegate_to: "{{ remote_server }}"
+      remote_user: "{{ remote_server_user }}"
+      ansible_ssh_pass: "{{ contraseña }}"
