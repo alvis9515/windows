@@ -25,5 +25,6 @@
         dest: "{{ remote_file_path }}"
       delegate_to: "{{ remote_server }}"
       remote_user: "{{ remote_server_user }}"
+      beacome: true
       vars:
         ansible_ssh_pass: "{{ remote_vault_password }}"
