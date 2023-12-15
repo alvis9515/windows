@@ -9,7 +9,9 @@
         
     - name: Mostrar la ruta del archivo creado
       debug:
-        var: "/tmp/hola.txt"
+        var: item
+      with_items:
+        - "/tmp/hola.txt"
 
     - name: Listar contenido de /tmp
       ansible.builtin.shell:
