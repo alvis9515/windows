@@ -6,3 +6,11 @@
       file:
         path: /tmp/hola.txt
         state: touch
+        
+    - name: Mostrar la ruta del archivo creado
+      debug:
+        var: "/tmp/hola.txt"
+
+    - name: Listar contenido de /tmp
+      ansible.builtin.shell:
+        cmd: "ls -la /tmp"
