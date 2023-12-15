@@ -7,6 +7,7 @@
     remote_server: "192.168.73.247"
     remote_file_path: "/tmp/texto.txt"
     remote_server_user: "awx"
+    remote_vault_password: "{{ lookup('env', 'contraseña') }}"
 
   tasks:
     - name: Crear archivo en localhost
@@ -24,4 +25,4 @@
         dest: "{{ remote_file_path }}"
       delegate_to: "{{ remote_server }}"
       remote_user: "{{ remote_server_user }}"
-      ansible_ssh_pass: "{{ contraseña }}"
+      ansible_ssh_pass: "{{ remote_vault_password }}"
