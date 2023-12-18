@@ -1,0 +1,15 @@
+---
+- name: Copiar archivo a carpeta en Windows
+  hosts: all
+  gather_facts: no
+
+  tasks:
+    - name: Copiar archivo
+      win_copy:
+        src: C:\Users\Administrator\Pictures\pruebaimagen.jpg
+        dest: C:\Users\Administrator\Desktop\NuevaCarpeta6\
+      register: resultado_copia
+
+    - name: Imprimir resultado de la copia
+      debug:
+        var: resultado_copia
