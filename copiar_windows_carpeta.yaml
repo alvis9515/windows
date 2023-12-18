@@ -8,7 +8,7 @@
       win_copy:
         src: C:\Users\Administrator\Pictures\pruebaimagen.jpg
         dest: C:\Users\Administrator\Desktop\NuevaCarpeta6\
-      register: resultado_copia
+        register: resultado_copia
       remote_src: true
 
     - name: Imprimir resultado de la copia
