@@ -5,14 +5,14 @@
   tasks:
     - name: Crear carpeta en el escritorio
       win_file:
-        path: "C:\\Users\\Administrator\\Desktop\\NuevaCarpeta6"  # Ruta de la nueva carpeta
+        path: "C:\\Users\\Administrator\\Desktop\\NuevaCarpeta7"  # Ruta de la nueva carpeta
         register: carpeta_creada
         state: directory
         
     - name: Add secret share
       ansible.windows.win_share:
-        name: internal2
+        name: internal3
         description: top secret share
-        path: C:\Users\Administrator\Desktop\NuevaCarpeta6
+        path: C:\Users\Administrator\Desktop\NuevaCarpeta7
         list: false
         full: Administrators
