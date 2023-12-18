@@ -6,7 +6,7 @@
   tasks:
     - name: Copiar archivo
       win_copy:
-        src: C:\Users\Administrator\Pictures\pruebaimagen.jpg
+        src: C:\Users\Administrator\Pictures\pruebaimagen.jpg.bmp
         dest: C:\Users\Administrator\Desktop\NuevaCarpeta6\
         remote_src: true
       register: resultado_copia
