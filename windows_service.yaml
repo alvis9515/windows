@@ -3,14 +3,13 @@
   hosts: all
   vars:
   tasks:
-    - name: Obtener el estado actual del servicio
-      win_shell: Get-Service -Name {{ service_name }} | Select-Object -ExpandProperty Status
-      register: service_status
-
-    - name: Definir variable para el estado del servicio
-      set_fact:
-        service_state: "{{ service_status.stdout.strip() }}"
-
-    - name: Reiniciar el servicio si está detenido
-      win_shell: Restart-Service -Name {{ service_name }}
-      when: service_state == 'Stopped'
+    - name: Comprobar y reiniciar servicios
+      win_shell: |
+        $services = {{ service_names | to_json }}
+        foreach ($service in $services) {
+          $status = Get-Service -Name $service | Select-Object -ExpandProperty Status
+          if ($status -eq 'Stopped') {
+            Restart-Service -Name $service
+          }
+        }
+      run_once: true
