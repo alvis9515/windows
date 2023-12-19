@@ -4,13 +4,17 @@
  
   vars:
     sql_query: "SELECT * FROM Productos"
- 
+    mssql_login_user: "Administrator"
+    mssql_login_password: "OracleRedsoft2022"
+    mssql_host: "WIN-K5QJEA01EJE"
+    mssql_port: "49675"
+    
   tasks:
   - name: execute SQL
     community.general.mssql_script:
-      login_user: "{{ Administrator }}"
-      login_password: "{{ OracleRedsoft2022# }}"
-      login_host: "{{ WIN-K5QJEA01EJE }}"
-      login_port: "{{ 49675 }}"
+      login_user: "{{ mssql_login_user }}"
+      login_password: "{{ mssql_login_password }}"
+      login_host: "{{ mssql_host }}"
+      login_port: "{{ mssql_port }}"
       db: "Productos"
       script: "{{ sql_query }}"
