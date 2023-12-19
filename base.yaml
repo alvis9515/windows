@@ -1,0 +1,26 @@
+---
+- name: Ejecutar consulta en SQL Server
+  hosts: all
+  gather_facts: no
+  vars:
+    sql_query: "SELECT * FROM Productos"
+    sql_server:
+      host: "WIN-K5QJEA01EJE\SQLEXPRESS"
+      port: "49675"  # El puerto predeterminado es 1433
+      user: "Administrator"
+      password: "OracleRedsoft2022#"
+      database: "Productos"
+  tasks:
+    - name: Ejecutar consulta SQL
+      mssql_query:
+        server: "{{ sql_server.host }}"
+        port: "{{ sql_server.port }}"
+        user: "{{ sql_server.user }}"
+        password: "{{ sql_server.password }}"
+        database: "{{ sql_server.database }}"
+        query: "{{ sql_query }}"
+      register: result
+
+    - name: Mostrar resultado
+      debug:
+        var: result
