@@ -5,7 +5,7 @@
   vars:
     sql_query: "SELECT * FROM Productos"
     sql_server:
-      host: "WIN-K5QJEA01EJE\SQLEXPRESS"
+      host: "WIN-K5QJEA01EJE"
       port: "49675"  # El puerto predeterminado es 1433
       user: "Administrator"
       password: "OracleRedsoft2022#"
