@@ -2,14 +2,14 @@
 - name: Comprobar y reiniciar un servicio
   hosts: all
   tasks:
-    - name: Comprobar y reiniciar servicios
-      service_facts:
-        gather_subset: all
-      register: services
+    - name: Comprobar el estado de los servicios
+      win_service_facts:
+        names: "{{ service_names }}"
+      register: services_info
 
-    - name: Reiniciar servicios si están detenidos
-      service:
-        name: "{{ item }}"
-        state: restarted
-      loop: "{{ service_names }}"
-      when: "'{{ item }}' in services.services"
+    - name: Reiniciar servicios detenidos
+      win_service:
+        name: "{{ item.name }}"
+        state: started
+      loop: "{{ services_info.services }}"
+      when: "'Stopped' in item.state"
