@@ -3,7 +3,7 @@
   hosts: all
   gather_facts: no
   vars:
-    sql_query: "SELECT * FROM Restaurante.Productos"
+    sql_query: "SELECT * FROM dbo.Productos"
   tasks:
     - name: Ejecutar consulta SQL con PowerShell
       win_shell: |
