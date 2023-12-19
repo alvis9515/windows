@@ -7,8 +7,9 @@
       win_shell: Get-Service -Name "{{ item }}" | Select-Object -ExpandProperty Status
       loop: "{{ service_names }}"
       register: services_status
+      failed_when: False  # No marcamos como fallo para manejarlo más adelante
 
     - name: Reiniciar servicios detenidos
-      win_shell: Restart-Service -Name "{{ item.item }}"
+      win_shell: Restart-Service -Name "{{ item.item }}" 
       loop: "{{ services_status.results }}"
-      when: item.stdout.strip() == 'Stopped'
+      when: item.stdout.strip() == 'Stopped' and not item.failed
