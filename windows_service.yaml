@@ -3,12 +3,13 @@
   hosts: all
   tasks:
     - name: Comprobar y reiniciar servicios
-      win_shell: |
-        $services = {{ service_names | to_json }}
-        foreach ($service in $services) {
-          $status = Get-Service -Name $service | Select-Object -ExpandProperty Status
-          if ($status -eq 'Stopped') {
-            Restart-Service -Name $service
-          }
-        }
-      run_once: true
+      service_facts:
+        gather_subset: all
+      register: services
+
+    - name: Reiniciar servicios si están detenidos
+      service:
+        name: "{{ item }}"
+        state: restarted
+      loop: "{{ service_names }}"
+      when: "'{{ item }}' in services.services"
