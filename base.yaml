@@ -20,8 +20,3 @@
         $DataSet = New-Object System.Data.DataSet
         $SqlAdapter.Fill($DataSet)
         $DataSet.Tables[0] | Format-Table -AutoSize | Out-String
-      register: result
-
-    - name: Mostrar resultado
-      debug:
-        var: result.stdout_lines
