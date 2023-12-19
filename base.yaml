@@ -12,7 +12,7 @@
       database: "Productos"
   tasks:
     - name: Ejecutar consulta SQL
-      community.mssql.mssql_query:
+      community.general.mssql_query:
         server: "{{ sql_server.host }}"
         port: "{{ sql_server.port }}"
         user: "{{ sql_server.user }}"
