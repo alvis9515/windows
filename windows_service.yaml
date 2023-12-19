@@ -1,7 +1,7 @@
 ---
 - name: Comprobar y reiniciar un servicio
   hosts: all
-    tasks:
+  tasks:
     - name: Comprobar y reiniciar servicios
       win_shell: |
         $services = {{ service_names | to_json }}
