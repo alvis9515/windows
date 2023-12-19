@@ -1,11 +1,16 @@
 ---
-- name: Comprobar y reiniciar el servicio wuauserv
+- name: Comprobar y reiniciar un servicio
   hosts: all
+  vars:
   tasks:
-    - name: Obtener el estado actual del servicio wuauserv
-      win_shell: Get-Service -Name wuauserv | Select-Object -ExpandProperty Status
+    - name: Obtener el estado actual del servicio
+      win_shell: Get-Service -Name {{ service_name }} | Select-Object -ExpandProperty Status
       register: service_status
 
+    - name: Definir variable para el estado del servicio
+      set_fact:
+        service_state: "{{ service_status.stdout.strip() }}"
+
     - name: Reiniciar el servicio si está detenido
-      win_shell: Restart-Service -Name wuauserv
-      when: service_status.stdout.strip() == 'Stopped'
+      win_shell: Restart-Service -Name {{ service_name }}
+      when: service_state == 'Stopped'
