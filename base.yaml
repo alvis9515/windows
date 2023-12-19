@@ -10,15 +10,15 @@
     sql_query: "SELECT * FROM Productos"
   tasks:
     - name: Ejecutar consulta SQL con PowerShell
-      win_command: powershell.exe -NoProfile -ExecutionPolicy Bypass -Command |
-        $SqlConnection = New-Object System.Data.SqlClient.SqlConnection; `
-        $SqlConnection.ConnectionString = "Server={{ mssql_host }},{{ mssql_port }};Database=Productos;User Id={{ mssql_login_user }};Password={{ mssql_login_password }};"; `
-        $SqlCmd = $SqlConnection.CreateCommand(); `
-        $SqlCmd.CommandText = "{{ sql_query }}"; `
-        $SqlAdapter = New-Object System.Data.SqlClient.SqlDataAdapter; `
-        $SqlAdapter.SelectCommand = $SqlCmd; `
-        $DataSet = New-Object System.Data.DataSet; `
-        $SqlAdapter.Fill($DataSet); `
+      win_shell: |
+        $SqlConnection = New-Object System.Data.SqlClient.SqlConnection
+        $SqlConnection.ConnectionString = "Server={{ mssql_host }},{{ mssql_port }};Database=Productos;User Id={{ mssql_login_user }};Password={{ mssql_login_password }};"
+        $SqlCmd = $SqlConnection.CreateCommand()
+        $SqlCmd.CommandText = "{{ sql_query }}"
+        $SqlAdapter = New-Object System.Data.SqlClient.SqlDataAdapter
+        $SqlAdapter.SelectCommand = $SqlCmd
+        $DataSet = New-Object System.Data.DataSet
+        $SqlAdapter.Fill($DataSet)
         $DataSet.Tables[0] | Format-Table -AutoSize | Out-String
       register: result
 
