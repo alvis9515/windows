@@ -3,10 +3,6 @@
   hosts: all
   gather_facts: no
   vars:
-    mssql_login_user: "Administrator"
-    mssql_login_password: "OracleRedsoft2022#"
-    mssql_host: "WIN-K5QJEA01EJE"
-    mssql_port: "49675"  # El puerto predeterminado es 1433
     sql_query: "SELECT * FROM Productos"
   tasks:
     - name: Ejecutar consulta SQL con PowerShell
