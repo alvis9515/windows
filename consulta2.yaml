@@ -1,19 +1,16 @@
-- name: Ejecutar consulta en SQL Server
-  hosts: all
-  gather_facts: no
+---
+- hosts: all
+  gather_facts: false
+ 
   vars:
-    ANSIBLE_WINRM_INTERPRETER=C:\Program Files\Python36\python.exe
     sql_query: "SELECT * FROM Productos"
+ 
   tasks:
-    - name: Ejecutar consulta SQL
-      community.general.mssql_script:
-        server: "WIN-K5QJEA01EJE"
-        user: "Administrator"
-        password: "OracleRedsoft2022#"
-        database: "Productos"
-        query: "{{ sql_query }}"
-      register: result
-
-    - name: Mostrar resultado
-      debug:
-        var: result
+  - name: execute SQL
+    community.general.mssql_script:
+      login_user: "{{ Administrator }}"
+      login_password: "{{ OracleRedsoft2022# }}"
+      login_host: "{{ WIN-K5QJEA01EJE }}"
+      login_port: "{{ 49675 }}"
+      db: "Productos"
+      script: "{{ sql_query }}"
