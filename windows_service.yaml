@@ -3,7 +3,7 @@
   hosts: all
   tasks:
     - name: Comprobar el estado de los servicios
-      win_service_facts:
+      win_service:
         names: "{{ service_names }}"
       register: services_info
 
