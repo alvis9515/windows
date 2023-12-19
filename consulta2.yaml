@@ -2,6 +2,7 @@
   hosts: all
   gather_facts: no
   vars:
+    ANSIBLE_WINRM_INTERPRETER=C:\Program Files\Python36\python.exe
     sql_query: "SELECT * FROM Productos"
   tasks:
     - name: Ejecutar consulta SQL
