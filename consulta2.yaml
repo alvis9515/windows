@@ -16,5 +16,5 @@
       login_password: "{{ mssql_login_password }}"
       login_host: "{{ mssql_host }}"
       login_port: "{{ mssql_port }}"
-      db: "Productos"
+      db: "Restarurante"
       script: "{{ sql_query }}"
