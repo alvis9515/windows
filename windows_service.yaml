@@ -2,14 +2,13 @@
 - name: Comprobar y reiniciar un servicio
   hosts: all
   tasks:
+
     - name: Comprobar el estado de los servicios
-      win_service:
-        names: "{{ service_names }}"
-      register: services_info
+      win_shell: Get-Service -Name "{{ item }}" | Select-Object -ExpandProperty Status
+      loop: "{{ service_names }}"
+      register: services_status
 
     - name: Reiniciar servicios detenidos
-      win_service:
-        name: "{{ item.name }}"
-        state: started
-      loop: "{{ services_info.services }}"
-      when: "'Stopped' in item.state"
+      win_shell: Restart-Service -Name "{{ item.item }}"
+      loop: "{{ services_status.results }}"
+      when: item.stdout.strip() == 'Stopped'
