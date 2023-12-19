@@ -4,10 +4,6 @@
  
   vars:
     sql_query: "SELECT * FROM Productos"
-    mssql_login_user: "Administrator"
-    mssql_login_password: "OracleRedsoft2022"
-    mssql_host: "WIN-K5QJEA01EJE"
-    mssql_port: "49675"
     
   tasks:
   - name: execute SQL
