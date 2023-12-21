@@ -1,6 +1,6 @@
 ---
 - name: Comprobar y reiniciar un servicio
-  hosts: all
+  hosts: 192.168.72.3
   tasks:
 
     - name: Comprobar el estado de los servicios
