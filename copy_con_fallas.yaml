@@ -1,0 +1,17 @@
+--
+- name: Copiar archivo a carpeta en Windows
+  hosts: 192.168.72.3
+  gather_facts: no
+
+  tasks:
+    - name: Copiar archivo
+      win_copy:
+        src: C:\Users\Administrator\Pictures\pruebaimagen2.jpg.bmp
+        dest: C:\Users\Administrator\Desktop\NuevaCarpeta12\
+        remote_src: true
+      register: resultado_copia
+      
+
+    - name: Imprimir resultado de la copia
+      debug:
+        var: resultado_copia
