@@ -9,10 +9,10 @@
         register: carpeta_creada
         state: directory
         
-    - name: Add secret share
+    - name: Agregar carpeta compartida
       ansible.windows.win_share:
-        name: internal7
+        name: internal8
         description: top secret share
-        path: C:\Users\Administrator\Desktop\NuevaCarpeta10
+        path: C:\Users\Administrator\Desktop\NuevaCarpeta11
         list: false
         full: Administrators
