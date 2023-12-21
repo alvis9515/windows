@@ -3,12 +3,12 @@
   hosts: 192.168.72.5
   gather_facts: no
   vars:
-    sql_query: "select FechaVenta,Cantidad,PrecioTotal,Nombre from Ventas join Productos on dbo.Ventas.ProductoID=dbo.Productos.ProductoID"
+    sql_query: "{{consulta}}"
   tasks:
     - name: Ejecutar consulta SQL con PowerShell
       win_shell: |
         $SqlConnection = New-Object System.Data.SqlClient.SqlConnection
-        $SqlConnection.ConnectionString = "Server={{ mssql_host }},{{ mssql_port }};Database=Restaurante;User Id={{ mssql_login_user }};Password={{ mssql_login_password }};"
+        $SqlConnection.ConnectionString = "Server={{ mssql_host }},{{ mssql_port }};Database="db";User Id={{ mssql_login_user }};Password={{ mssql_login_password }};"
         $SqlCmd = $SqlConnection.CreateCommand()
         $SqlCmd.CommandText = "{{ sql_query }}"
         $SqlAdapter = New-Object System.Data.SqlClient.SqlDataAdapter
