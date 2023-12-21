@@ -1,6 +1,6 @@
 ---
 - name: Ejecutar consulta en SQL Server
-  hosts: all
+  hosts: 192.168.72.5
   gather_facts: no
   vars:
     sql_query: "SELECT * FROM dbo.Productos"
