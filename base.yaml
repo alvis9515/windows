@@ -3,7 +3,7 @@
   hosts: 192.168.72.5
   gather_facts: no
   vars:
-    sql_query: "SELECT * FROM dbo.Productos"
+    sql_query: "select FechaVenta,Cantidad,PrecioTotal,Nombre from Ventas join Productos on dbo.Ventas.ProductoID=dbo.Productos.ProductoID"
   tasks:
     - name: Ejecutar consulta SQL con PowerShell
       win_shell: |
