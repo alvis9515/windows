@@ -1,6 +1,6 @@
 --
 - name: Copiar archivo a carpeta en Windows
-  hosts: 192.168.72.3
+  hosts: 192.168.72.4
   gather_facts: no
 
   tasks:
