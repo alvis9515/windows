@@ -7,7 +7,7 @@
     - name: Copiar archivo
       win_copy:
         src: C:\Users\Administrator\Pictures\pruebaimagen2.jpg.bmp
-        dest: C:\Users\Administrator\Desktop\NuevaCarpeta9\
+        dest: C:\Users\Administrator\Desktop\NuevaCarpeta10\
         remote_src: true
       register: resultado_copia
       
