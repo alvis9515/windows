@@ -5,7 +5,7 @@
   tasks:
     - name: Crear carpeta en el escritorio
       win_file:
-        path: "C:\\Users\\Administrator\\Desktop\\NuevaCarpeta10"  # Ruta de la nueva carpeta
+        path: "C:\\Users\\Administrator\\Desktop\\NuevaCarpeta11"  # Ruta de la nueva carpeta
         register: carpeta_creada
         state: directory
         
