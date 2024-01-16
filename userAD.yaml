@@ -4,7 +4,7 @@
   become: yes
   tasks:
     - name: Crear usuario en Active Directory
-      win_domain_user:
+      community.windows.win_domain_user:
         name: "{{nombre_usuario}}"
         password: "{{contraseñausuario}}"
         state: present
