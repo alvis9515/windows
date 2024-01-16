@@ -5,12 +5,12 @@
   tasks:
     - name: Crear usuario en Active Directory
       win_domain_user:
-        name: {{nombre_usuario}}
-        password: {{contraseñausuario}}
+        name: "{{nombre_usuario}}"
+        password: "{{contraseñausuario}}"
         state: present
-        domain_username: {{administrador_del_dominio}}
-        domain_password: {{contraseña_del_administrador}}
-        domain_name: {{nombredominio}}
+        domain_username: "{{administrador_del_dominio}}"
+        domain_password: "{{contraseña_del_administrador}}"
+        domain_name: "{{nombredominio}}"
         groups:
           - QA
           
