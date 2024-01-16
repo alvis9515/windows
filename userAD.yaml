@@ -10,7 +10,7 @@
         state: present
         domain_username: "{{administrador_del_dominio}}"
         domain_password: "{{contraseña_del_administrador}}"
-        domain_name: "{{nombredominio}}"
+        domain_server: "{{nombredominio}}"
         groups:
           - QA
           
