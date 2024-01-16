@@ -40,7 +40,6 @@
         --nic1 nat
         --audio none
         --usb off
-#        --usbcontroller off
         --ioapic on
         --clipboard disabled
         --draganddrop disabled
