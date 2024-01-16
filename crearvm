@@ -1,0 +1,64 @@
+---
+- name: Crear VM en VirtualBox
+  hosts: all
+  gather_facts: false
+  become: true
+
+  tasks:
+#    - name: Descargar imagen ISO si no está presente
+#      get_url:
+#        url: "https://ruta/a/tu/imagen.iso"
+#        dest: "/ruta/local/a/tu/imagen.iso"
+#        mode: 0644
+#      when: not (ansible_check_mode | bool)
+
+    - name: Crear la máquina virtual solo si VirtualBox no está instalado
+      command: VBoxManage --version
+      ignore_errors: true
+      register: virtualbox_installed
+
+    - name: Instalar VirtualBox si no está instalado
+      apt:
+        name: virtualbox
+        state: present
+      when: virtualbox_installed.rc != 0
+
+    - name: Crear la máquina virtual
+      command: >
+        VBoxManage createvm
+        --name "{{ vm_name }}"
+        --ostype "{{ os_type }}"
+        --register
+      register: vm_creation_result
+    - name: Configurar la máquina virtual
+      command: >
+        VBoxManage modifyvm "{{ vm_name }}"
+        --memory "{{ vm_memory }}"
+        --vram "{{ vm_vram }}"
+        --acpi on
+        --boot1 dvd
+        --nic1 nat
+        --audio none
+        --usb off
+        --usbcontroller off
+        --ioapic on
+        --clipboard disabled
+        --draganddrop disabled
+        --audioout none
+        --audioin none
+      when: vm_creation_result.rc == 0
+
+    - name: Adjuntar imagen ISO a la máquina virtual
+      command: >
+        VBoxManage storageattach "{{ vm_name }}"
+        --storagectl "IDE Controller"
+        --port 0
+        --device 0
+        --type dvddrive
+        --medium "/ruta/local/a/tu/imagen.iso"
+      when: vm_creation_result.rc == 0
+
+    - name: Iniciar la máquina virtual
+      command: >
+        VBoxManage startvm "{{ vm_name }}"
+      when: vm_creation_result.rc == 0
