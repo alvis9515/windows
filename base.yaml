@@ -1,6 +1,6 @@
 ---
 - name: Ejecutar consulta en SQL Server
-  hosts: 192.168.72.5
+  hosts: sqlserver
   gather_facts: no
   vars:
     sql_query: "{{consulta}}"
