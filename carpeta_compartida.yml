@@ -1,6 +1,6 @@
 ---
 - name: Crear carpeta compartida en Windows
-  hosts: 192.168.72.3
+  hosts: windowsDC
   gather_facts: false
   tasks:
     - name: Crear carpeta en el escritorio
