@@ -10,9 +10,9 @@
       win_shell: New-NetIPAddress -InterfaceAlias "Ethernet 2" -IPAddress 192.168.43.1 -PrefixLength 24 -DefaultGateway 192.168.43.1
 
     - name: Verificar disponibilidad de la interfaz
-      win_shell: Test-Connection -ComputerName 192.168.43.1 -Count 1
+      win_shell: Test-Connection -ComputerName 192.168.32.1 -Count 1
       register: ping_result
 
     - name: Levantar interfaz si no está disponible
-      when: "ping_result.rc -ne 0"
+      when: "ping_result.rc != 0"
       win_shell: Enable-NetAdapter -Name "NombreInterfaz" -Confirm:$false
