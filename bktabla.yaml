@@ -6,6 +6,6 @@
     - name: Ejecutar Backup
       win_shell: |
         $ConnectionString = "Server={{ mssql_host }},{{ mssql_port }};Database={{ db }};User Id={{ mssql_login_user }};Password={{ mssql_login_password }};"
-        $BackupPath = "C:\Users\Administrator.REDSOFT\Documents\Backupsqltabla"
+        $BackupPath = "C:\Bktabla\Backupsqltabla.bak"
         $Query = "BACKUP DATABASE Restaurante TO DISK='$BackupPath' WITH FORMAT, INIT;"
         Invoke-Sqlcmd -ConnectionString $ConnectionString -Query $Query
