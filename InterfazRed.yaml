@@ -5,14 +5,19 @@
   tasks:
     - name: Habilitar interfaz de red
       win_shell: Enable-NetAdapter -Name "Ethernet 2" -Confirm:$false
+      
+    - name: Verificar si la IP ya está configurada
+      win_shell: Get-NetIPAddress -InterfaceAlias "Ethernet 2" -AddressFamily IPv4 -ErrorAction SilentlyContinue
+      register: existing_ip_result
 
-    - name: Configurar IP en interfaz de red
+    - name: Configurar IP en interfaz de red si no existe
       win_shell: New-NetIPAddress -InterfaceAlias "Ethernet 2" -IPAddress 192.168.43.1 -PrefixLength 24 -DefaultGateway 192.168.43.1
+      when: existing_ip_result.rc != 0
 
     - name: Verificar disponibilidad de la interfaz
-      win_shell: Test-Connection -ComputerName 192.168.32.1 -Count 1
+      win_shell: Test-Connection -ComputerName 192.168.43.1 -Count 1
       register: ping_result
 
     - name: Levantar interfaz si no está disponible
-      when: "ping_result.rc != 0"
-      win_shell: Enable-NetAdapter -Name "NombreInterfaz" -Confirm:$false
+      when: ping_result.rc != 0
+      win_shell: Enable-NetAdapter -Name "Ethernet 2" -Confirm:$false
