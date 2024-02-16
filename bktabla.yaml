@@ -1,0 +1,12 @@
+---
+- name: Ejecutar Backup de Base de Datos en SQL Server
+  hosts: sqlserver
+  gather_facts: no
+  tasks:
+    - name: Ejecutar Backup
+      win_shell: |
+        $SqlConnection.ConnectionString = "Server={{ mssql_host }},{{ mssql_port }};Database={{db}};User Id={{ mssql_login_user }};Password={{ mssql_login_password }};"
+        $ConnectionString = "Server={{ sql_server }};Database=master;Integrated Security=True;"
+        $BackupPath = "C:\Users\Administrator.REDSOFT\Documents\Backupsqltabla\respaldo.bak"
+        $Query = "BACKUP DATABASE Restaurantes TO DISK='$BackupPath' WITH FORMAT, INIT;"
+        Invoke-Sqlcmd -ServerInstance "{{ sql_server }}" -Database "master" -Query $Query
