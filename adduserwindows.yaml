@@ -1,6 +1,6 @@
 ---
 - name: Crear usuario en Windows Server 2016
-  hosts: all
+  hosts: Router
   tasks:
     - name: Crear usuario
       win_user:
