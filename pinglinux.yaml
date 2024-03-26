@@ -1,6 +1,6 @@
 ---
 - name: Ping all Linux servers
-  hosts: linux_servers
+  hosts: "{{my_inventory}}"
   gather_facts: no
 
   tasks:
