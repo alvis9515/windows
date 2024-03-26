@@ -1,0 +1,8 @@
+---
+- name: Ping all Linux servers
+  hosts: "{{ my_inventory }}"
+  gather_facts: no
+
+  tasks:
+    - name: Ping each server
+      ping:
