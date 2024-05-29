@@ -1,8 +1,30 @@
 ---
-- name: Ping all Linux servers
-  hosts: "{{ my_inventory }}"
+- name: SSH into a server and run commands on Cisco device
+  hosts: all
   gather_facts: no
-
   tasks:
-    - name: Ping each server
-      ping:
+    - name: SSH into Cisco device and show version
+      expect:
+        command: ssh red@192.168.73.71
+        responses:
+          password: "{{ pass }}"
+        timeout: 30
+        echo: yes
+        stdin_add_newline: yes
+        responses:
+          'Password:': '{{ pass }}'
+      register: ssh_login
+
+    - name: Show version command
+      expect:
+        command: ssh red@192.168.73.71
+        responses:
+          'Password:': '{{ pass }}'
+          '.*#': 'show version\n'
+        timeout: 30
+        echo: yes
+      register: version_output
+
+    - name: Display version output
+      debug:
+        var: version_output.stdout
