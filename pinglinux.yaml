@@ -2,29 +2,19 @@
 - name: SSH into a server and run commands on Cisco device
   hosts: all
   gather_facts: no
+  vars:
+    pass: "tu_contraseña"
   tasks:
     - name: SSH into Cisco device and show version
       expect:
         command: ssh red@192.168.73.71
         responses:
-          password: "{{ pass }}"
-        timeout: 30
-        echo: yes
-        stdin_add_newline: yes
-        responses:
-          'Password:': '{{ pass }}'
-      register: ssh_login
-
-    - name: Show version command
-      expect:
-        command: ssh red@192.168.73.71
-        responses:
-          'Password:': '{{ pass }}'
+          'Password:': "{{ pass }}\n"
           '.*#': 'show version\n'
         timeout: 30
-        echo: yes
-      register: version_output
+        echo: true
+      register: ssh_login
 
     - name: Display version output
       debug:
-        var: version_output.stdout
+        var: ssh_login.stdout
