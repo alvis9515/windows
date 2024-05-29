@@ -2,8 +2,6 @@
 - name: SSH into a server and run commands on Cisco device
   hosts: all
   gather_facts: no
-  vars:
-    pass: "tu_contraseña"
   tasks:
     - name: SSH into Cisco device and show version
       expect:
