@@ -1,12 +1,10 @@
 ---
-- name: Ejecutar script en el servidor remoto
-  hosts: routers
+- name: Ejecutar comando SSH con Ansible
+  hosts: tu_host_remoto
   gather_facts: no
-
   tasks:
-    - name: Ejecutar comando en el servidor remoto
-      shell: /home/awx/sc.sh 192.168.73.71 red 123456
-      register: command_output
-
-    - debug:
-        var: command_output.stdout
+    - name: Ejecutar comando SSH
+      expect:
+        command: ssh red@{{ ansible_host }} "show version"
+        responses:
+          Password: "alvis"
