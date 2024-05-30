@@ -1,19 +1,14 @@
 ---
-- name: SSH into a server and run commands on Cisco device
-  hosts: all
+- name: Ejecutar show version en routers Cisco sin módulos específicos
+  hosts: routers
   gather_facts: no
-  tasks:
-    - name: SSH into Cisco device and show version
-      expect:
-        command: ssh red@192.168.73.71
-        responses:
-          'Password:': "{{ pass }}\n"
-          '.*Are you sure you want to continue connecting.*': 'yes\n'
-          '.*#': 'show version\n'
-        timeout: 30
-        echo: true
-      register: ssh_login
 
-    - name: Display version output
+  tasks:
+    - name: Ejecutar script expect para show version
+      command: >
+        /home/awx/sc.sh {{ ip }} {{ usuario }} {{ contraseña }}
+      register: output
+
+    - name: Mostrar salida del comando
       debug:
-        var: ssh_login.stdout
+        var: output.stdout
