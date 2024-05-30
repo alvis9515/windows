@@ -7,4 +7,5 @@
       expect:
         command: ssh red@{{ ansible_host }} "show version"
         responses:
+          Are you sure you want to continue connecting (yes/no/[fingerprint])? : "yes\n"
           Password: "alvis"
