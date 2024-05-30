@@ -1,14 +1,12 @@
 ---
-- name: Ejecutar show version en routers Cisco sin módulos específicos
+- name: Ejecutar script en el servidor remoto
   hosts: routers
   gather_facts: no
 
   tasks:
-    - name: Ejecutar script expect para show version
-      command: >
-        /home/awx/sc.sh {{ ip }} {{ usuario }} {{ contraseña }}
-      register: output
+    - name: Ejecutar comando en el servidor remoto
+      shell: /home/awx/sc.sh 192.168.73.71 red 123456
+      register: command_output
 
-    - name: Mostrar salida del comando
-      debug:
-        var: output.stdout
+    - debug:
+        var: command_output.stdout
