@@ -1,6 +1,6 @@
 ---
 - name: Ejecutar comando SSH con Ansible
-  hosts: tu_host_remoto
+  hosts: routers
   gather_facts: no
   tasks:
     - name: Ejecutar comando SSH
