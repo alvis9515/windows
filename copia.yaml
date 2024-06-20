@@ -19,5 +19,5 @@
   tasks:
     - name: Guardar la salida en un archivo local
       copy:
-        content: "{{ hostvars['tu_servidor_remoto']['command_output']['stdout'] }}"
+        content: "{{ hostvars['192.168.0.8']['command_output']['stdout'] }}"
         dest: /pruebas/command_output.txt
