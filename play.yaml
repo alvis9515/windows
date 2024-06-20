@@ -1,0 +1,32 @@
+---
+- name: Example playbook using json_query
+  hosts: all
+  vars:
+    # Definir la ruta del archivo JSON
+    json_file_path: "data.json"
+
+  tasks:
+    - name: Load JSON file
+      slurp:
+        src: "{{ json_file_path }}"
+      register: json_content
+
+    - name: Convert JSON content to dictionary
+      set_fact:
+        data: "{{ json_content.content | b64decode | from_json }}"
+
+    - name: Extract names using json_query
+      set_fact:
+        people_names: "{{ data | json_query('people[*].name') }}"
+
+    - name: Print extracted names
+      debug:
+        msg: "Names: {{ people_names }}"
+
+    - name: Extract people older than 24
+      set_fact:
+        people_older_than_24: "{{ data | json_query('people[?age > `24`]') }}"
+
+    - name: Print people older than 24
+      debug:
+        msg: "People older than 24: {{ people_older_than_24 }}"
