@@ -1,0 +1,14 @@
+---
+- name: Ejecutar comando en localhost y guardar salida
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Ejecutar el comando y guardar salida en variable
+      shell: hostname
+      register: command_output
+
+    - name: Guardar la salida en localhost
+      local_action:
+        module: copy
+        content: "{{ command_output.stdout }}"
+        dest: /tmp/command_output.txt
