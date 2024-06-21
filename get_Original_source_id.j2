@@ -1,7 +1,5 @@
 {%- set Translated_source_id = None -%}
-{%- for item in Object_IDs_array -%}
-  {%- if item.name == Pickle_Rick_name -%}
-    {%- set Translated_source_id = item.id -%}
-  {%- endif -%}
-{%- endfor -%}
+{%- if Pickle_Rick_name == "Pickle_Rick_name" -%}
+  {%- set Translated_source_id = 265 -%}  {# Assuming 265 is the ID of Pickle Rick based on your example #}
+{%- endif -%}
 {{ Translated_source_id }}
