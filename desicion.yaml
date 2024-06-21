@@ -1,13 +1,15 @@
 ---
-- name: Main Playbook
-  hosts: all
+- name: Playbook Principal
+  hosts: localhost
+  gather_facts: false
   vars:
-    condition: "a"  # Esta variable podría provenir de un archivo de inventario, una variable de entorno, etc.
+    condition: "a"  # Cambia esta variable para probar diferentes condiciones
+
   tasks:
     - name: Incluir playbook A si la condición es 'a'
-      include_playbook: playbook_a.yml
+      include_tasks: playbook_a.yaml
       when: condition == "a"
 
     - name: Incluir playbook B si la condición es 'b'
-      include_playbook: playbook_b.yml
+      include_tasks: playbook_b.yaml
       when: condition == "b"
