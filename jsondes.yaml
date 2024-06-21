@@ -1,8 +1,6 @@
 ---
 - name: Consultar API de Rick and Morty y formatear JSON
   hosts: localhost
-  vars:
-    key_order: ["id", "name", "status", "species", "type", "gender", "origin", "location", "image", "episode", "url", "created"]
   tasks:
     - name: Realizar solicitud HTTP GET
       uri:
@@ -16,37 +14,30 @@
 
     - name: Ordenar y formatear JSON con indentación
       set_fact:
-        ordered_data: >-
-          {{
-            {
-              "id": character_data.id,
-              "name": character_data.name,
-              "status": character_data.status,
-              "species": character_data.species,
-              "type": character_data.type,
-              "gender": character_data.gender,
-              "origin": character_data.origin,
-              "location": character_data.location,
-              "image": character_data.image,
-              "episode": character_data.episode,
-              "url": character_data.url,
-              "created": character_data.created
-            }
-          }}
-
-    - name: Convertir datos ordenados a JSON
-      set_fact:
-        formatted_json: "{{ ordered_data | to_nice_json }}"
-
-    - name: Escribir JSON formateado en un archivo
-      copy:
-        content: "{{ formatted_json }}"
-        dest: /pruebas/formatted_rick_morty3.json
-
-    - name: Mostrar el contenido del archivo JSON
-      command: cat /pruebas/formatted_rick_morty3.json
-      register: cat_output
+        formatted_json: |
+          {
+            "id": {{ character_data.id }},
+            "name": "{{ character_data.name }}",
+            "status": "{{ character_data.status }}",
+            "species": "{{ character_data.species }}",
+            "type": "{{ character_data.type }}",
+            "gender": "{{ character_data.gender }}",
+            "origin": {
+              "name": "{{ character_data.origin.name }}",
+              "url": "{{ character_data.origin.url }}"
+            },
+            "location": {
+              "name": "{{ character_data.location.name }}",
+              "url": "{{ character_data.location.url }}"
+            },
+            "image": "{{ character_data.image }}",
+            "episode": [
+              "{{ character_data.episode[0] }}"
+            ],
+            "url": "{{ character_data.url }}",
+            "created": "{{ character_data.created }}"
+          }
 
     - name: Imprimir JSON formateado
       debug:
-        msg: "{{ cat_output.stdout }}"
+        msg: "{{ formatted_json }}"
