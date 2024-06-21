@@ -1,6 +1,7 @@
 ---
 - name: Incluir playbook
   import_playbook: jsondes.yaml
+  import_playbook: playbook.yaml
   
 - name: Playbook Principal
   hosts: localhost
