@@ -40,4 +40,8 @@
 
     - name: Imprimir JSON formateado
       debug:
-        msg: "{{ formatted_json }}"
+        var: formatted_json
+      vars:
+        ansible_facts:
+          ansible_facts:
+            msg: "{{formatted_json}}"
