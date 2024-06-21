@@ -1,22 +1,19 @@
 {
-  "id": {{ character_data.id }},
-  "name": "{{ character_data.name }}",
-  "status": "{{ character_data.status }}",
-  "species": "{{ character_data.species }}",
-  "type": "{{ character_data.type }}",
-  "gender": "{{ character_data.gender }}",
-  "origin": {
-    "name": "{{ character_data.origin.name }}",
-    "url": "{{ character_data.origin.url }}"
-  },
-  "location": {
-    "name": "{{ character_data.location.name }}",
-    "url": "{{ character_data.location.url }}"
-  },
-  "image": "{{ character_data.image }}",
-  "episode": [
-    "{{ character_data.episode[0] }}"
-  ],
-  "url": "{{ character_data.url }}",
-  "created": "{{ character_data.created }}"
+  {% for key, value in character_data.items() %}
+    {% if value is mapping %}
+      "{{ key }}": {
+        {% for inner_key, inner_value in value.items() %}
+          "{{ inner_key }}": {% if inner_value is string %}"{{ inner_value }}"{% else %}{{ inner_value }}{% endif %}{% if not loop.last %},{% endif %}
+        {% endfor %}
+      }{% if not loop.last %},{% endif %}
+    {% elif value is sequence %}
+      "{{ key }}": [
+        {% for item in value %}
+          {% if item is string %}"{{ item }}"{% else %}{{ item }}{% endif %}{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]{% if not loop.last %},{% endif %}
+    {% else %}
+      "{{ key }}": {% if value is string %}"{{ value }}"{% else %}{{ value }}{% endif %}{% if not loop.last %},{% endif %}
+    {% endif %}
+  {% endfor %}
 }
