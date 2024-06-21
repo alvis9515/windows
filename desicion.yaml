@@ -7,7 +7,7 @@
 
   tasks:
     - name: Incluir playbook A si la condición es 'a'
-      include_playbook: playbook.yml
+      ansible.builtin.import_playbook: playbook.yml
       when: condition == "a"
 
     - name: Incluir playbook B si la condición es 'b'
