@@ -12,17 +12,37 @@
       set_fact:
         character_data: "{{ api_response.json }}"
 
+    - name: Ordenar claves del JSON
+      set_fact:
+        ordered_character_data: >
+          {{
+            {
+              "id": character_data.id,
+              "name": character_data.name,
+              "status": character_data.status,
+              "species": character_data.species,
+              "type": character_data.type,
+              "gender": character_data.gender,
+              "origin": character_data.origin,
+              "location": character_data.location,
+              "image": character_data.image,
+              "episode": character_data.episode,
+              "url": character_data.url,
+              "created": character_data.created
+            }
+          }}
+
     - name: Formatear JSON con indentación
       set_fact:
-        formatted_json: "{{ character_data | to_nice_json }}"
+        formatted_json: "{{ ordered_character_data | to_nice_json }}"
 
     - name: Escribir JSON formateado en un archivo
       copy:
         content: "{{ formatted_json }}"
-        dest: /pruebas/formatted_rick_morty.json
+        dest: /pruebas/formatted_rick_morty2.json
 
     - name: Mostrar el contenido del archivo JSON
-      command: cat /pruebas/formatted_rick_morty.json
+      command: cat /pruebas/formatted_rick_morty2.json
       register: cat_output
 
     - name: Imprimir JSON formateado
