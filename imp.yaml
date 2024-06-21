@@ -15,7 +15,9 @@
     
     - name: Set translated source ID using external Jinja template
       set_fact:
-        Translated_source_id: "{{ lookup('template', 'get_Original_source_id.j2') | trim }}"
+        Translated_source_id: "{{ lookup('template', 'get_Source_interface_id.j2') | trim }}"
+      vars:
+        Pickle_Rick_name: "{{ Pickle_Rick_name }}"
     
     - name: Print Translated Source ID
       debug:
