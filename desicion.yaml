@@ -1,21 +1,5 @@
 ---
-- name: Incluir playbook
-  import_playbook: jsondes.yaml
-  
-- name: Playbook Principal
-  hosts: localhost
-  gather_facts: false
-  vars:
-    condition: "a"  # Cambia esta variable para probar diferentes condiciones
-
-  tasks:
-    - name: Incluir playbook a si la condición es 'b'    
-      include_tasks: jsondes.yaml
-      when: condition == "a"
-
-    - name: Incluir playbook 2
-      import_playbook: archivolocal.yaml
-  
-    - name: Incluir playbook B si la condición es 'b'
-      include_tasks: archivolocal.yaml
-      when: condition == "b"
+- import_playbook: jsondes.yaml
+  when: run is defined
+- import_playbook: archivolocal.yaml
+  when: run is defined
