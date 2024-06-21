@@ -1,6 +1,10 @@
 ---
 - name: Crear archivo en localhost
   hosts: all
+
+  vars:
+    run: 1
+    
   tasks:
     - name: Crear archivo
       file:
