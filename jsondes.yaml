@@ -12,33 +12,11 @@
       set_fact:
         character_data: "{{ api_response.json }}"
 
-    - name: Ordenar y formatear JSON con indentación
-      set_fact:
-        formatted_json: |
-          {
-            "id": {{ character_data.id }},
-            "name": "{{ character_data.name }}",
-            "status": "{{ character_data.status }}",
-            "species": "{{ character_data.species }}",
-            "type": "{{ character_data.type }}",
-            "gender": "{{ character_data.gender }}",
-            "origin": {
-              "name": "{{ character_data.origin.name }}",
-              "url": "{{ character_data.origin.url }}"
-            },
-            "location": {
-              "name": "{{ character_data.location.name }}",
-              "url": "{{ character_data.location.url }}"
-            },
-            "image": "{{ character_data.image }}",
-            "episode": [
-              "{{ character_data.episode[0] }}"
-            ],
-            "url": "{{ character_data.url }}",
-            "created": "{{ character_data.created }}"
-          }
+    - name: Generar JSON formateado utilizando plantilla Jinja2
+      template:
+        src: formatted_rick_morty.j2
+        dest: /pruebas/formatted_rick_morty.json
 
-    - name: Guardar JSON formateado en un archivo
-      copy:
-        content: "{{ formatted_json | to_nice_json }}"
-        dest: /pruebas/formatted_rick_morty5.json
+    - name: Mostrar la ruta del archivo guardado
+      debug:
+        msg: "JSON formateado guardado en /pruebas/formatted_rick_morty.json"
