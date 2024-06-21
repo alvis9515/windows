@@ -15,5 +15,5 @@
       when: condition == "a"
 
     - name: Incluir playbook B si la condición es 'b'
-      include_tasks: pruebas.yaml
+      include_tasks: pruebas.yml
       when: condition == "b"
