@@ -18,4 +18,5 @@
 
     - name: Imprimir JSON formateado
       debug:
-        msg: "{{ formatted_json }}"
+        msg: |
+          {{ formatted_json }}
