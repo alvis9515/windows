@@ -3,15 +3,15 @@
     {% if value is mapping %}
       "{{ key }}": {
         {% for inner_key, inner_value in value.items() %}
-          "{{ inner_key }}": {% if inner_value is string %}"{{ inner_value }}"{% else %}{{ inner_value }}{% endif %}{% if not loop.last %},{% endif %}
+          "{% if inner_value is string %}"{{ inner_key }}": "{{ inner_value }}"{% else %}"{{ inner_key }}": {{ inner_value }}{% endif %}{% if not loop.last %},{% endif %}
         {% endfor %}
       }{% if not loop.last %},{% endif %}
     {% elif value is sequence %}
-      "{{ key }}": [
-        {% for item in value %}
-          {% if item is string %}"{{ item }}"{% else %}{{ item }}{% endif %}{% if not loop.last %},{% endif %}
-        {% endfor %}
-      ]{% if not loop.last %},{% endif %}
+      "{% if value is string %}"{{ key }}": ["{% endif %}
+      {% for item in value %}
+        {% if item is string %}"{{ item }}"{% else %}{{ item }}{% endif %}{% if not loop.last %},{% endif %}
+      {% endfor %}
+      {% if value is string %}"]"{% endif %}{% if not loop.last %},{% endif %}
     {% else %}
       "{{ key }}": {% if value is string %}"{{ value }}"{% else %}{{ value }}{% endif %}{% if not loop.last %},{% endif %}
     {% endif %}
