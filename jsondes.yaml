@@ -40,5 +40,5 @@
 
     - name: Guardar JSON formateado en un archivo
       copy:
-        content: "{{ formatted_json }}"
-        dest: /pruebas/formatted_rick_morty4.json
+        content: "{{ formatted_json | to_nice_json }}"
+        dest: /pruebas/formatted_rick_morty5.json
