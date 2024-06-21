@@ -2,9 +2,6 @@
 - name: Incluir playbook
   import_playbook: jsondes.yaml
   
-- name: Incluir playbook 2
-  import_playbook: archivolocal.yaml
-  
 - name: Playbook Principal
   hosts: localhost
   gather_facts: false
@@ -16,6 +13,9 @@
       include_tasks: jsondes.yaml
       when: condition == "a"
 
+    - name: Incluir playbook 2
+      import_playbook: archivolocal.yaml
+  
     - name: Incluir playbook B si la condición es 'b'
       include_tasks: archivolocal.yaml
       when: condition == "b"
