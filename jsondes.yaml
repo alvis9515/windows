@@ -1,0 +1,21 @@
+---
+- name: Consultar API de Rick and Morty y formatear JSON
+  hosts: all
+  tasks:
+    - name: Realizar solicitud HTTP GET
+      uri:
+        url: https://rickandmortyapi.com/api/character/265
+        return_content: yes
+      register: api_response
+
+    - name: Convertir respuesta JSON a un diccionario
+      set_fact:
+        character_data: "{{ api_response.json }}"
+
+    - name: Formatear JSON con indentación
+      set_fact:
+        formatted_json: "{{ character_data | to_nice_json }}"
+
+    - name: Imprimir JSON formateado
+      debug:
+        msg: "{{ formatted_json }}"
