@@ -7,7 +7,7 @@
 
   tasks:
     - name: Incluir playbook A si la condición es 'a'
-      include_tasks: imp.yaml
+      include_tasks: playbook.yml
       when: condition == "a"
 
     - name: Incluir playbook B si la condición es 'b'
