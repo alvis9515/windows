@@ -16,7 +16,7 @@
       set_fact:
         formatted_json: "{{ character_data | to_nice_json }}"
 
-   - name: Escribir JSON formateado en un archivo
+    - name: Escribir JSON formateado en un archivo
       copy:
         content: "{{ formatted_json }}"
         dest: /pruebas/formatted_rick_morty.json
