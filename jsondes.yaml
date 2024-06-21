@@ -16,7 +16,15 @@
       set_fact:
         formatted_json: "{{ character_data | to_nice_json }}"
 
+   - name: Escribir JSON formateado en un archivo
+      copy:
+        content: "{{ formatted_json }}"
+        dest: /pruebas/formatted_rick_morty.json
+
+    - name: Mostrar el contenido del archivo JSON
+      command: cat /pruebas/formatted_rick_morty.json
+      register: cat_output
+
     - name: Imprimir JSON formateado
       debug:
-        msg: |
-          {{ formatted_json }}
+        msg: "{{ cat_output.stdout }}
