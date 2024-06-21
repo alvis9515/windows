@@ -2,21 +2,21 @@
 - name: Consultar API de Rick and Morty y guardar JSON formateado en archivo
   hosts: localhost
   tasks:
-- name: Get character info from Rick and Morty API
-  uri:
-    url: "https://rickandmortyapi.com/api/character/265"
-    method: GET
-  register: rick_and_morty_response
-
-- name: Set fact with Pickle Rick's name
-  set_fact:
-    Pickle_Rick_name: "{{ rick_and_morty_response.json.name }}"
-  when: rick_and_morty_response.status == 200
-
-- name: Set translated source ID using external Jinja template
-  set_fact:
-    Translated_source_id: "{{ lookup('template', 'get_Original_source_id.j2') | trim }}"
-
-- name: Print Translated Source ID
-  debug:
-    msg: "Translated Source = {{ Translated_source_id }}"
+    - name: Get character info from Rick and Morty API
+      uri:
+        url: "https://rickandmortyapi.com/api/character/265"
+        method: GET
+      register: rick_and_morty_response
+    
+    - name: Set fact with Pickle Rick's name
+      set_fact:
+        Pickle_Rick_name: "{{ rick_and_morty_response.json.name }}"
+      when: rick_and_morty_response.status == 200
+    
+    - name: Set translated source ID using external Jinja template
+      set_fact:
+        Translated_source_id: "{{ lookup('template', 'get_Original_source_id.j2') | trim }}"
+    
+    - name: Print Translated Source ID
+      debug:
+        msg: "Translated Source = {{ Translated_source_id }}"
