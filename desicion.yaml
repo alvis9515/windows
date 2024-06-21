@@ -1,4 +1,7 @@
 ---
+- name: Incluir playbook
+  import_playbook: jsondes.yaml
+  
 - name: Playbook Principal
   hosts: localhost
   gather_facts: false
@@ -6,10 +9,10 @@
     condition: "a"  # Cambia esta variable para probar diferentes condiciones
 
   tasks:
-    - name: Incluir playbook A si la condición es 'a'
-      ansible.builtin.import_playbook: playbook.yml
+    - name: Incluir playbook a si la condición es 'b'    
+      include_tasks: jsondes.yaml
       when: condition == "a"
 
     - name: Incluir playbook B si la condición es 'b'
-      include_tasks: jsondes.yaml
+      include_tasks: pruebas.yaml
       when: condition == "b"
