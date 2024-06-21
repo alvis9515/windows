@@ -1,5 +1,5 @@
 ---
-- name: Consultar API de Rick and Morty y formatear JSON
+- name: Consultar API de Rick and Morty y guardar JSON formateado en archivo
   hosts: localhost
   tasks:
     - name: Realizar solicitud HTTP GET
@@ -38,10 +38,7 @@
             "created": "{{ character_data.created }}"
           }
 
-    - name: Imprimir JSON formateado
-      debug:
-        var: formatted_json
-      vars:
-        ansible_facts:
-          ansible_facts:
-            msg: "{{formatted_json}}"
+    - name: Guardar JSON formateado en un archivo
+      copy:
+        content: "{{ formatted_json }}"
+        dest: /pruebas/formatted_rick_morty4.json
