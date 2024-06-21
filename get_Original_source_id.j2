@@ -1,5 +1,7 @@
+{%- set Translated_source_id = None -%}
 {%- for item in Object_IDs_array -%}
-  {%- if item.name == Original -%}
-    {{ item.id }}
+  {%- if item.name == Pickle_Rick_name -%}
+    {%- set Translated_source_id = item.id -%}
   {%- endif -%}
 {%- endfor -%}
+{{ Translated_source_id }}
