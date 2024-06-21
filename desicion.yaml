@@ -7,9 +7,9 @@
 
   tasks:
     - name: Incluir playbook A si la condición es 'a'
-      include_tasks: playbook_a.yaml
+      include_tasks: imp.yaml.yaml
       when: condition == "a"
 
     - name: Incluir playbook B si la condición es 'b'
-      include_tasks: playbook_b.yaml
+      include_tasks: jsondes.yaml
       when: condition == "b"
