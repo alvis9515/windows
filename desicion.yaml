@@ -1,6 +1,8 @@
 ---
 - name: Incluir playbook
   import_playbook: jsondes.yaml
+  
+- name: Incluir playbook 2
   import_playbook: archivolocal.yaml
   
 - name: Playbook Principal
