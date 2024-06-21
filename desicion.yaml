@@ -1,0 +1,14 @@
+---
+- name: Main Playbook
+  hosts: all
+  vars:
+    condition: "a"  # Esta variable podría provenir de un archivo de inventario, una variable de entorno, etc.
+
+  tasks:
+    - name: Incluir playbook A si la condición es 'a'
+      include_playbook: adduserwindows.yaml
+      when: condition == "a"
+
+    - name: Incluir playbook B si la condición es 'b'
+      include_playbook: archivolocal.yaml
+      when: condition == "b"
