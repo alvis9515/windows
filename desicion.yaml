@@ -1,5 +1,5 @@
 ---
 - import_playbook: jsondes.yaml
-  when: run is defined
+  when: run == 'pollo' 
 - import_playbook: archivolocal.yaml
   when: run == 'tamal'
