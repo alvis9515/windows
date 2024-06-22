@@ -3,7 +3,7 @@
   hosts: all
 
   vars:
-    run: 'pollo'
+    run: 'pruebas.k3s'
     
   tasks:
     - name: Crear archivo
