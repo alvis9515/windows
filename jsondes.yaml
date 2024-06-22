@@ -1,6 +1,8 @@
 ---
 - name: Consultar API de Rick and Morty y guardar JSON formateado en archivo
   hosts: localhost
+  vars:
+    run: 'tamal'
   tasks:
     - name: Realizar solicitud HTTP GET
       uri:
