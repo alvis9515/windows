@@ -1,5 +1,12 @@
 ---
+- name: Leer contenido del archivo y establecer variable
+  hosts: localhost
+  tasks:
+    - name: Leer contenido del archivo nodok3_hostname.txt
+      set_fact:
+        nodo_hostname: "{{ lookup('file', '/pruebas/nodok3_hostname.txt') }}"
+        
 - import_playbook: jsondes.yaml
-  when: run == 'pollo' 
+  when: run == 'nodo_hostname' 
 - import_playbook: archivolocal.yaml
-  when: run == 'tamal'
+  when: run == 'nodo_hostname'
