@@ -10,6 +10,6 @@
         var: nodo_hostname
         
 - import_playbook: jsondes.yaml
-  when: run == 'pruebas.k3s' and nodo_hostname == 'pruebas.k3s'
+  when: run == "pruebas.k3s" and nodo_hostname == "pruebas.k3s"
 - import_playbook: archivolocal.yaml
   when: run == 'nodo_hostname'
