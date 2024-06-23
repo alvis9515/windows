@@ -1,8 +1,8 @@
 ---
 - name: Leer contenido del archivo y establecer variable
   hosts: localhost
-  vars:
-    run: "pruebas.k3s"
+#  vars:
+#    run: "pruebas.k3s"
     
   tasks:
     - name: Leer contenido del archivo nodok3_hostname.txt
