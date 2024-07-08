@@ -15,4 +15,4 @@
       local_action:
         module: copy
         content: "{{ hostname_output.stdout }}"
-        dest: "/pruebas/{{ inventory_hostname }}_hostname.txt"
+        dest: "/carpeta1/{{ inventory_hostname }}_hostname.txt"
