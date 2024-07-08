@@ -1,6 +1,6 @@
 ---
 - name: Obtener el hostname y guardarlo en un archivo local
-  hosts: all
+  hosts: pavvasbposqldb01
   gather_facts: no
   tasks:
     - name: Obtener el hostname del servidor remoto
@@ -18,7 +18,7 @@
         dest: "/carpeta1/{{ inventory_hostname }}_hostname.txt"
         
 - name: Copiar archivo en localhost
-  hosts: localhost
+  hosts: pavvasbautoptf01
   tasks:
     - name: Copiar archivo de una carpeta a otra
       copy:
