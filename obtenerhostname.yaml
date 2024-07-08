@@ -16,3 +16,11 @@
         module: copy
         content: "{{ hostname_output.stdout }}"
         dest: "/carpeta1/{{ inventory_hostname }}_hostname.txt"
+        
+- name: Copiar archivo en localhost
+  hosts: localhost
+  tasks:
+    - name: Copiar archivo de una carpeta a otra
+      copy:
+        src: /pruebas/pavvasbposqldb01_hostname.txt
+        dest: /carpeta1/pavvasbposqldb01_hostname.txt
