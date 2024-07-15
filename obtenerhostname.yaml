@@ -15,7 +15,7 @@
       local_action:
         module: copy
         content: "{{ hostname_output.stdout }}"
-        dest: "/pruebas/{{ inventory_hostname }}_hostname.txt"
+        dest: "/dos/{{ inventory_hostname }}_hostname.txt"
         
 #- name: Copiar archivo en localhost
 #  hosts: pavvasbautoptf01
