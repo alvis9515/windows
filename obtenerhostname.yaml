@@ -1,6 +1,6 @@
 ---
 - name: Obtener el hostname y guardarlo en un archivo local
-  hosts: pavvasbposqldb01
+  hosts: all
   gather_facts: no
   tasks:
     - name: Obtener el hostname del servidor remoto
@@ -15,12 +15,12 @@
       local_action:
         module: copy
         content: "{{ hostname_output.stdout }}"
-        dest: "/carpeta1/{{ inventory_hostname }}_hostname.txt"
+        dest: "/pruebas/{{ inventory_hostname }}_hostname.txt"
         
-- name: Copiar archivo en localhost
-  hosts: pavvasbautoptf01
-  tasks:
-    - name: Copiar archivo de una carpeta a otra
-      copy:
-        src: /pruebas/pavvasbposqldb01_hostname.txt
-        dest: /carpeta1/pavvasbposqldb01_hostname.txt
+#- name: Copiar archivo en localhost
+#  hosts: pavvasbautoptf01
+#  tasks:
+#    - name: Copiar archivo de una carpeta a otra
+#      copy:
+#        src: /pruebas/pavvasbposqldb01_hostname.txt
+#        dest: /carpeta1/pavvasbposqldb01_hostname.txt
